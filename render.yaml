@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: learnpulse
+    runtime: node
+    rootDir: learnpulse
+    plan: free
+    buildCommand: corepack enable && corepack prepare pnpm@10.15.0 --activate && pnpm install --frozen-lockfile && pnpm run build
+    startCommand: pnpm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
